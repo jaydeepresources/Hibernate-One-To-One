@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.component.mapping.User" table="user_account">
+		<id name="id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="username"></property>
+		<property name="password"></property>
+		<property name="email"></property>
+
+		<one-to-one name="account" cascade="all"></one-to-one>
+	</class>
+
+	<class name="com.component.mapping.Account" table="account">
+		<id name="id">
+			<generator class="foreign">
+			<param name="property">user</param>  
+			</generator>
+		</id>
+		<property name="displayName"></property>
+		<property name="location"></property>
+		
+		<one-to-one name="user"></one-to-one>  
+	</class>
+
+</hibernate-mapping>  
